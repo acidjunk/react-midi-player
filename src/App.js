@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import NotePlayer from "./components/NotePlayer";
-import {Divider, Header} from "semantic-ui-react";
+import {Container, Divider, Header, Segment} from "semantic-ui-react";
 import MIDISounds from 'midi-sounds-react';
-
 
 
 const O = 12;
@@ -42,10 +40,6 @@ const _Em = [
     , S2 + 0
     , S1 + 0
 ];
-
-
-
-
 
 
 class App extends Component {
@@ -116,9 +110,18 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <h1 className="App-title">Welcome to midi-sounds-react example 7</h1>
+                <Segment inverted>
+                <Container text>
+                    <Header
+                        as='h1'
+                        content='React Midi Player demo'
+                        inverted
+                        style={{
+                            fontWeight: 'normal',
+                            marginBottom: 0,
+                            marginTop:'1.5em',
+                        }}
+                    />
                     <NotePlayer note="58" text="Bb" playNote={this.playNote}/>
                     <NotePlayer note="59" text="B" playNote={this.playNote}/>
                     <NotePlayer note="60" text="C" playNote={this.playNote}/>
@@ -128,29 +131,34 @@ class App extends Component {
                     <NotePlayer note="64" text="E" playNote={this.playNote}/>
                     <NotePlayer note="65" text="F" playNote={this.playNote}/>
                     <NotePlayer note="66" text="F#" playNote={this.playNote}/>
-                    <NotePlayer note="67" text="C" playNote={this.playNote}/>
+                    <NotePlayer note="67" text="G" playNote={this.playNote}/>
                     <NotePlayer note="68" text="G#" playNote={this.playNote}/>
                     <NotePlayer note="69" text="A" playNote={this.playNote}/>
                     <NotePlayer note="70" text="Bb" playNote={this.playNote}/>
                     <NotePlayer note="71" text="B" playNote={this.playNote}/>
                     <NotePlayer note="72" text="C'" playNote={this.playNote}/>
-                    <Divider hidden></Divider>
-                </header>
-                <p className="App-intro">Select instrument and press a button.</p>
-                <p><select value={this.state.selectedInstrument} onChange={this.onSelectInstrument.bind(this)}>{this.createSelectItems()}</select></p>
-                <p>
-                    <button onClick={this.playCurSingle.bind(this)}>Single E</button>
-                    <button onClick={this.playCurChord.bind(this)}>Chord Em</button>
-                    <button onClick={this.playCurDown.bind(this)}>Down Em</button>
-                    <button onClick={this.playCurUp.bind(this)}>Up Em</button>
-                    <button onClick={this.playCurSnap.bind(this)}>Snap Em</button>
-                    <button onClick={this.playCurStrings.bind(this)}>Guitar Strings</button>
-                    <button onClick={this.playCurBass.bind(this)}>Bass Strings</button>
-                </p>
-                <p>Component</p>
-                <MIDISounds ref={(ref) => (this.midiSounds = ref)} appElementName="root" instruments={[this.state.selectedInstrument]} />
-                <hr/>
-                <p>Sources: <a href={'https://www.npmjs.com/package/midi-sounds-react'}>https://www.npmjs.com/package/midi-sounds-react</a></p>
+
+                    <p className="App-intro">Select instrument and press a button.</p>
+                    <p><select value={this.state.selectedInstrument} onChange={this.onSelectInstrument.bind(this)}>{this.createSelectItems()}</select></p>
+                    <p>
+                        <button onClick={this.playCurSingle.bind(this)}>Single E</button>
+                        <button onClick={this.playCurChord.bind(this)}>Chord Em</button>
+                        <button onClick={this.playCurDown.bind(this)}>Down Em</button>
+                        <button onClick={this.playCurUp.bind(this)}>Up Em</button>
+                        <button onClick={this.playCurSnap.bind(this)}>Snap Em</button>
+                        <button onClick={this.playCurStrings.bind(this)}>Guitar Strings</button>
+                        <button onClick={this.playCurBass.bind(this)}>Bass Strings</button>
+                    </p>
+                    <p>Component</p>
+                    <MIDISounds ref={(ref) => (this.midiSounds = ref)} appElementName="root" instruments={[this.state.selectedInstrument]} />
+                    <hr/>
+                    <p>Sources: <a href={'https://www.npmjs.com/package/midi-sounds-react'}>https://www.npmjs.com/package/midi-sounds-react</a></p>
+
+                </Container>
+                </Segment>
+
+
+
             </div>
         );
     }
